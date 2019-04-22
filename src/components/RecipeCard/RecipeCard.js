@@ -1,21 +1,30 @@
 import React from "react";
 import "./RecipeCard.css";
 
+
+
 let RecipeCard = props => {
   const {
+    index,
     name,
     category,
     authorFirst,
     authorLast,
     ingredients,
-    instructions
+    instructions,
+    handleDelete
   } = props;
+ 
+  
+
   const ingredientsDisplay = ingredients.map((ingredient, i) => {
     return <li key={i}>{ingredient}</li>;
   });
   const instructionsDisplay = instructions.map((instruction, i) => {
     return <li key={i}>{instruction}</li>;
   });
+
+  
   return (
     <div className="RecipeCard">
       <div className="title_container">
@@ -33,7 +42,7 @@ let RecipeCard = props => {
       <div className="scroll_container">
         <ol className="list">{instructionsDisplay}</ol>
       </div>
-      <svg
+      <svg onClick={()=>handleDelete(index)}
         className="delete"
         width="60"
         height="60"
